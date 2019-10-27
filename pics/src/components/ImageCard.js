@@ -1,3 +1,8 @@
+/**
+ * Need to define number associated with vertical grid space so images don't get crushed.
+ * Since we have to manipulate the value of the gridRowEnd CSS property as each image is rendered,
+ * this requires use of a ref to get access to the particular img tag in the real DOM. 
+ */
 import React from 'react';
 
 class ImageCard extends React.Component {
