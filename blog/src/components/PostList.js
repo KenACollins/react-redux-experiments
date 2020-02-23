@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions';
+import { fetchPostsAndUsers } from '../actions';
 import UserHeader from './UserHeader';
  
 class PostList extends React.Component {
+    /**
+     * componentDidMount() runs AFTER the component has finished rendering, so initially, the screen loads
+     * with render() generating DOM elements with no data because this.props.posts is an empty array. Then,
+     * this method runs, updates both the posts and users state properties, and this component notices that
+     * the state it is dependent on, the props property, has changed and it renders the component again, but
+     * now able to display data.
+     */
     componentDidMount() {
-        this.props.fetchPosts();
+        this.props.fetchPostsAndUsers();    // We receive these props from the connect()() function below.
     }
 
     renderList() {
@@ -34,4 +41,4 @@ const mapStateToProps = (state) => {
     return { posts: state.posts };
 };
 
-export default connect(mapStateToProps, { fetchPosts })(PostList);
+export default connect(mapStateToProps, { fetchPostsAndUsers })(PostList);
