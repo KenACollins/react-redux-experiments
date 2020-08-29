@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-const Modal = props => {
-    return ReactDOM.createPortal(
-        <div className="ui dimmer modals visible active">
-            <div onClick={(e) => e.stopPropagation()} className="ui standard modal visible active">
-                <div className="header">Modal Header</div>
-                <div className="content">
-                    I am a modal dialog.
+const Modal = ({ title, content, actions }) => {
+    const [isModalOpen, setModalOpen] = useState(true);
+
+    if (isModalOpen) {
+        return ReactDOM.createPortal(
+            <div onClick={() => setModalOpen(false)} className="ui dimmer modals visible active">
+                <div onClick={(e) => e.stopPropagation()} className="ui standard modal visible active">
+                    <div className="header">{title}</div>
+                    <div className="content">{content}</div>
+                    <div className="actions">{actions}</div>
                 </div>
-                <div className="actions">
-                    <div className="ui button primary">Delete</div>
-                    <div className="ui button">Cancel</div>
-                </div>
-            </div>
-        </div>,
-        document.getElementById('modal')
-    );
+            </div>,
+            document.getElementById('modal')
+        );
+    }
+    else {
+        return null;
+    }
+
 };
 
 export default Modal;
