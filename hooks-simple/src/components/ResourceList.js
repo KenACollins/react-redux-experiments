@@ -17,8 +17,16 @@ class ResourceList extends React.Component {
         }
     }
 
+    displayTitles() {
+        const titles = this.state.resources.map(data => {
+            return <li key={data.id}>{data.title}</li>;
+        });
+
+        return <ul>{titles}</ul>;
+    }
+
     render() {
-        return <div>{this.state.resources.length}</div>;
+        return <div>{this.displayTitles()}</div>;
     }
 }
 

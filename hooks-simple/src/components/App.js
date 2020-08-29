@@ -6,7 +6,7 @@ const App = () => {
 
     return (
         <div>
-            <div>
+            <div style={{ marginLeft: '20px' }}>
                 <button onClick={() => setResource("posts")}>Posts</button>
                 <button onClick={() => setResource("todos")}>Todos</button>
             </div>
